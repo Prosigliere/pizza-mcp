@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="logo.png" alt="Pizza MCP Logo" width="200"/>
+</div>
+
 # Pizza MCP Server
 
 A Model Context Protocol (MCP) server for managing pizzas, toppings, and people.
