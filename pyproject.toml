@@ -1,0 +1,12 @@
+[project]
+name = "pizza-mcp"
+version = "0.1.0"
+description = "Pizza MCP Server"
+requires-python = ">=3.10"
+dependencies = [
+    "fastmcp",
+    "requests",
+    "python-dotenv",
+    "starlette",
+    "uvicorn"
+]

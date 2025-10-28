@@ -1,0 +1,29 @@
+# Use the official Python lightweight image
+FROM python:3.13-slim 
+
+# Set up work directory
+WORKDIR /app
+
+# Install uv globally in this stage (alternative to multi-stage copy)
+RUN pip install uv
+
+# Allow statements and log messages to immediately appear in the logs
+ENV PYTHONUNBUFFERED=1
+# Set the PORT environment variable used by Cloud Run and our script
+ENV PORT=8080
+
+# Copy dependency definition files
+COPY pyproject.toml uv.lock ./
+
+# Install dependencies using uv sync
+RUN uv sync
+
+# Copy the rest of the application code
+COPY . /app
+
+# Expose the port the app runs on (should match ENV PORT)
+EXPOSE 8080
+
+# Run the FastMCP server using uv to ensure correct environment activation
+# Using server_no_auth.py to avoid application-level authentication issues
+CMD ["uv", "run", "python", "server_no_auth.py"]
